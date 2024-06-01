@@ -28,3 +28,9 @@ This is a Node.js application that provides a RESTful API to manage users with a
    ```bash
    git clone https://github.com/harshPsxk/project-cron.git
    cd project-cron
+2. **Install dependencies:**
+
+   npm install
+   -Environment Variables
+    Copy the example environment file and fill in your values:
+    cp .env.example .env
