@@ -32,7 +32,7 @@ This is a Node.js application that provides a RESTful API to manage users with a
    
 ### Environment Variables
 
-Create a .env file in the root directory of your project and fill in your values:
+1. **Create a .env file in the root directory of your project and fill in your values:**
 ```
   DB_HOST=localhost
   DB_USER=root
@@ -40,16 +40,16 @@ Create a .env file in the root directory of your project and fill in your values
   DB_NAME=user_management
   DB_PORT=3306
 ```  
-Replace yourpassword with a secure password of your choice.
+  Replace yourpassword with a secure password of your choice.
 
-Add .env to .gitignore to prevent it from being committed to the repository:
+2. **Add .env to .gitignore to prevent it from being committed to the repository:**
 
-Create or open the .gitignore file and add the following line:
+  Create or open the .gitignore file and add the following line:
 
-```
-# Environment variables
-.env
-```
+  ```
+  # Environment variables
+  .env
+  ```
 Running the Application
 Setting Up MySQL with Docker
 Run the MySQL Docker container:
