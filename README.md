@@ -40,11 +40,11 @@ This is a Node.js application that provides a RESTful API to manage users with a
   DB_NAME=user_management
   DB_PORT=3306
 ```  
-  -Replace yourpassword with a secure password of your choice.
+  - Replace yourpassword with a secure password of your choice.
 
 2. **Add .env to .gitignore to prevent it from being committed to the repository:**
 
-  -Create or open the .gitignore file and add the following line:
+  - Create or open the .gitignore file and add the following line:
 
   ```
   # Environment variables
