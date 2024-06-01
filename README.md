@@ -30,7 +30,7 @@ This is a Node.js application that provides a RESTful API to manage users with a
    cd project-cron
    npm install
    
-Environment Variables
+### Environment Variables
 
 Create a .env file in the root directory of your project and fill in your values:
 ```
