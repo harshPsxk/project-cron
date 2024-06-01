@@ -28,9 +28,19 @@ This is a Node.js application that provides a RESTful API to manage users with a
    ```bash
    git clone https://github.com/harshPsxk/project-cron.git
    cd project-cron
+   
 2. **Install dependencies:**
 
+   ```bash
    npm install
-   -Environment Variables
-    Copy the example environment file and fill in your values:
-    cp .env.example .env
+   
+3. **Environment Variables**
+   -Fill in the values for DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, and DB_PORT in the .env file.
+   ```bash
+   DB_HOST=localhost
+    DB_USER=root
+    DB_PASSWORD=yourpassword
+    DB_NAME=user_management
+    DB_PORT=3306
+
+  
