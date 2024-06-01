@@ -171,3 +171,11 @@ curl -X PUT -H "Content-Type: application/json" -d '{"name": "Alice Updated", "e
 
 - Delete a user by ID:
 curl -X DELETE http://localhost:3000/api/users/1
+
+### License
+This project is licensed under the MIT License.
+```
+
+This `README.md` file includes all the steps to initialize Docker Desktop, set up MySQL, and run the Node.js application, maintaining the index and continuous format throughout the document.
+
+```
