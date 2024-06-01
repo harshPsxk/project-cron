@@ -50,26 +50,28 @@ This is a Node.js application that provides a RESTful API to manage users with a
   # Environment variables
   .env
   ```
-Running the Application
+
+### Running the Application
+
 Setting Up MySQL with Docker
-Run the MySQL Docker container:
+
+1. Run the MySQL Docker container:
+   
+  ```
+  docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=yourpassword -e MYSQL_DATABASE=user_management -p 3306:3306 -d mysql:latest
+  ```
+  - Replace yourpassword with the same password you used in the .env file.
+
+2. Access the MySQL container to set up the database schema and seed data:
+```
+  winpty docker exec -it mysql-db mysql -u root -p
+```
+  - Enter the password you set in the previous step when prompted.
+
+3. Run the following SQL commands to create the users table and seed initial data:
 
 
-
-docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=yourpassword -e MYSQL_DATABASE=user_management -p 3306:3306 -d mysql:latest
-Replace yourpassword with the same password you used in the .env file.
-
-Access the MySQL container to set up the database schema and seed data:
-
-
-
-winpty docker exec -it mysql-db mysql -u root -p
-Enter the password you set in the previous step when prompted.
-
-Run the following SQL commands to create the users table and seed initial data:
-
-
-
+```
 USE user_management;
 
 CREATE TABLE users (
@@ -80,32 +82,37 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com'), ('Jane Smith', 'jane@example.com');
-Start the application:
+```
+4. Start the application:
 
 
 
+```
 npm start
-You should see output indicating that the server has started, such as:
-
-
-
+```
+  - You should see output indicating that the server has started, such as:
+```
 Server started on port 3000
-API Endpoints
-GET /api/users: Fetches a list of all users.
-GET /api/users/:id: Fetches a single user by ID.
-POST /api/users: Creates a new user.
-Request Body: { "name": "John Doe", "email": "john@example.com" }
-PUT /api/users/:id: Updates a user by ID.
-Request Body: { "name": "John Doe", "email": "john@example.com" }
-DELETE /api/users/:id: Deletes a user by ID.
-Cron Job
+```
+
+### API Endpoints
+- GET /api/users: Fetches a list of all users.
+- GET /api/users/:id: Fetches a single user by ID.
+- POST /api/users: Creates a new user.
+- Request Body: { "name": "John Doe", "email": "john@example.com" }
+- PUT /api/users/:id: Updates a user by ID.
+- Request Body: { "name": "John Doe", "email": "john@example.com" }
+- DELETE /api/users/:id: Deletes a user by ID.
+  
+### Cron Job
+
 A cron job runs daily at midnight to perform maintenance tasks, such as deleting users created more than a year ago. The cron job logs its activity to the console.
 
-Testing the Cron Job
+### Testing the Cron Job
+
 To test the cron job, you can temporarily modify the schedule in scripts/cronJob.js to run every minute and observe the logs:
 
-
-
+```javascript
 const cron = require('node-cron');
 const db = require('../config/db');
 
@@ -123,10 +130,11 @@ cron.schedule('* * * * *', () => {
 });
 
 module.exports = cron;
+```
+
 Revert the schedule back to run daily at midnight after testing:
 
-
-
+```javascript
 const cron = require('node-cron');
 const db = require('../config/db');
 
@@ -144,31 +152,22 @@ cron.schedule('0 0 * * *', () => {
 });
 
 module.exports = cron;
-Testing
+```
+### Testing
+
 You can use Postman or curl to test the API endpoints:
 
-Fetch all users:
-
-
-
+- Fetch all users:
 curl -X GET http://localhost:3000/api/users
-Fetch a user by ID:
 
-
-
+- Fetch a user by ID:
 curl -X GET http://localhost:3000/api/users/1
-Create a new user:
 
-
-
+- Create a new user:
 curl -X POST -H "Content-Type: application/json" -d '{"name": "Alice", "email": "alice@example.com"}' http://localhost:3000/api/users
-Update an existing user by ID:
 
-
-
+- Update an existing user by ID:
 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Alice Updated", "email": "alice.updated@example.com"}' http://localhost:3000/api/users/1
-Delete a user by ID:
 
-
-
+- Delete a user by ID:
 curl -X DELETE http://localhost:3000/api/users/1
